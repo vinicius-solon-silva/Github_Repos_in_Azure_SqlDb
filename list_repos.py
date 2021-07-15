@@ -6,8 +6,7 @@ list_exit = False
 
 
 # STABLISHING CONNECTIONS WITH GITHUB USING REQUESTS
-username = input('''\nType the GitHub username to list his repositories and
-store them in a Azure SQL Database: ''')
+username = input("\nType the GitHub username to list his repositories and store them in a Azure SQL Database: ")
 username.lower()
 
 r = requests.get(f'http://api.github.com/users/{username}/repos')

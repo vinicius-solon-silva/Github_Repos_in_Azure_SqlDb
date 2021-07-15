@@ -40,11 +40,10 @@ while main_exit is False and list_repos.list_exit is False:
             conn: pyodbc.Connection = pyodbc.connect(connection_string)
             cursor: pyodbc.Cursor = conn.cursor()
 
-        except Exception as g:
-            print('''
-            ERROR: Could not connect to Azure :(
-            Username, password, server name or database name are incorrect!
-            Try again by typing all correctly!''')
+        except Exception:
+            print("\nERROR: Could not connect to Azure :(\n" +
+                  "Username, password, server name or database name are incorrect!\n" +
+                  "Try again by typing everything correctly!\n")
             break
 
         # DEFINE NEW SQL QUERIES AND EXECUTE THEM
@@ -69,26 +68,23 @@ while main_exit is False and list_repos.list_exit is False:
                     break
 
                 except Exception as e:
-                    print(f'''
-                FATAL ERROR: Could not insert data in Azure Database!
-                Report it to the owner of this code!
-                Error description: {e}\n''')
+                    print("FATAL ERROR: Could not insert data in Azure Database!\n" +
+                          "Report it to the owner of this code!\n" +
+                          f"Error description: {e}\n")
                     wish = 0
 
                 break
 
             except Exception as f:
-                print(f'''
-                ERROR: Could not create a new table or insert data for this user :(
-                Maybe the table already exists in this Azure Database...
-                Error Description: {f}\n''')
+                print(f"\n\nERROR: Could not create a new table or insert data for this user :(\n" +
+                      "Maybe the table already exists in this Azure Database...\n" +
+                      f"Error Description: {f}\n")
 
-                wish = input('''
-                You can delete the existing table if you want to try update it, is that your wish?
-                Type 'yes' if you want to update it, or type anything else to leave it as it is: ''')
+                wish = input("\nYou can delete the existing table if you want to try update it, is that your wish?\n" +
+                             "Type 'yes' if you want to update it, or type anything else to leave it as it is: ")
 
                 if (wish == 'yes'):
-                    print("\nDropping existing table...")
+                    print("\nDropping existing table...\n")
                     cursor.execute(f'''DROP TABLE {list_repos.username}_repos''')
 
                 else:
@@ -102,6 +98,5 @@ while main_exit is False and list_repos.list_exit is False:
         break
 
     else:
-        print(f'''\n\n
-        ERROR: Could not connect to Azure using the requested user '{list_repos.username}' repositories.
-        Maybe this github user doesnt have any repositories or it doesnt exists.\n''')
+        print(f"\n\nERROR: Could not connect to Azure using the requested user '{list_repos.username}' repositories.\n" +
+              "Maybe this github user doesnt have any repositories or it doesnt exists.\n")
