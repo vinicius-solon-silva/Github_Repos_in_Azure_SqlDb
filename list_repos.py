@@ -1,5 +1,6 @@
 import requests
 
+list_exit = False
 
 # -----LISTING GITHUB REPOSITORIES-----
 
@@ -21,13 +22,17 @@ url_list = []
 repo_qty = 0
 
 # PRINTING REPOS AND APPENDING DATA TO DEFINED LISTS
-print(f'\n{username} repos:\n')
-for index in repos:
-    print(index["name"])
-    repo_list.append(index["name"])
-    id_list.append(index["id"])
-    url_list.append(index["html_url"])
-    repo_qty += 1
+try:
+    print(f'\n{username} repos:\n')
+    for index in repos:
+        print('-> ' + index["name"])
+        repo_list.append(index["name"])
+        id_list.append(index["id"])
+        url_list.append(index["html_url"])
+        repo_qty += 1
+except Exception as e:
+    print("Error processing name. Please try again and type a valid GitHub username.")
+    list_exit = True
 
 # DEFINING SECTION OF THE 'INSERT' SQL QUERY COMMAND
 

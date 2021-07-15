@@ -1,6 +1,9 @@
-# GET GITHUB USER REPOSITORIES
+# POST GITHUB USER REPOSITORIES IN AZURE
 
 This project makes a search for github users repositories and post to an Azure SQL Database.
+
+## Pre-requisites
+You must have a existing Azure account with a SQL Database created.
 
 ## Installation
 
@@ -19,34 +22,37 @@ pip install pyodbc
 - Open the project folder in a development tool
 - Run the code using Python compiler
 
+The interface asks for a Github username and print the existing repositories:
 ```
-The interface asks for a Github username:
-
 >>> Type the GitHub username to list his repositories and store them in a Azure SQL Database: {username}
 
 >>> {username} repos: 
     ...
     ...
     ...
+```    
     
->>> Inserting repos id's, names and URLs to a Azure SQL Database...
+After that, it will ask for your Azure username, password, server name and database name:
+```
+>>> --Enter your Azure username and password--
+>>> Username:
+>>> Password:
+
+>>> --Enter your Azure server and database name--
+>>> Server name:
+>>> Database name:
+```
+
+Then it will try to create a new table in the given database and insert the repos data:
+```
+>>> Trying to create new table and inserting repos id's, names and URLs to Azure SQL Database...
+```
 
 If everything goes right, the interface will print the following message:
-
->>> Succesfully inserted data in Azure Database! :)
-
-Otherwise, it will print this:
-
->>> ERROR: We couldnt create a new table for this particular user :(
-    Maybe the table already exists in this Azure Database, or the user doesnt exists...
-    Try again by typing another GitHub username.
-    
-And if you type in the begginning of the code a username that doesn't exists or doesn't have any repos in GitHub, 
-this is the message that you will receive:
-
->>> ERROR: Could not connect to Azure using the requested user '{username}' repositories.
-    Maybe this github user doesnt have any repository or it doesnt exists.
 ```
+>>> Succesfully inserted data in Azure Database! :)
+```
+
 
 ## More information
 
