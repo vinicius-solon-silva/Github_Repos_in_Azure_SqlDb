@@ -64,7 +64,7 @@ while main_exit is False and list_repos.list_exit is False:
                         ''')
 
                     print('\nSuccesfully inserted data in Azure Database! :)\n')
-                    
+
                     break
 
                 except Exception as e:
@@ -89,6 +89,7 @@ while main_exit is False and list_repos.list_exit is False:
 
                 else:
                     print("\nLeaving everything as it is...\n")
+                    wish = 0
 
         # CLOSING AND COMMITING THE CONNECTION WHEN DONE
         conn.commit()
