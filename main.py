@@ -19,7 +19,7 @@ while main_exit is False and list_repos.list_exit is False:
         server_name = input('Server name: ')
         db_name = input('Database name: ')
 
-        # SPECEFYING DRIVER AND CREATING SERVER "URL"
+        # SPECIFYING DRIVER AND CREATING SERVER "URL"
         driver = '{ODBC Driver 17 for SQL Server}'
         server = f'tcp:{server_name}.database.windows.net,1433'
 
@@ -76,7 +76,7 @@ while main_exit is False and list_repos.list_exit is False:
                 break
 
             except Exception as f:
-                print(f"\n\nERROR: Could not create a new table or insert data for this user :(\n" +
+                print("\n\nERROR: Could not create a new table or insert data for this user :(\n" +
                       "Maybe the table already exists in this Azure Database...\n" +
                       f"Error Description: {f}\n")
 
@@ -95,7 +95,7 @@ while main_exit is False and list_repos.list_exit is False:
         conn.commit()
         cursor.close()
         conn.close()
-        exit = True
+        main_exit = True
         break
 
     else:
